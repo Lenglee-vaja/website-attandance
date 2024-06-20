@@ -44,3 +44,120 @@
   height: 300px;
   border-radius: 50%;
 }
+header{
+  min-height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8%;
+}
+header .header-nav{
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+.header-nav .nav-item{
+  font-weight: 500;
+  font-size: 1rem;
+  color: white;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+.header-nav .nav-item.active{
+  font-weight: bold;
+  border-bottom: 2px; 
+  border-bottom-style: solid;
+  border-bottom-color: white;
+}
+header .header-right{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+header .header-right .icon{
+  cursor: pointer;
+}
+
+
+/* -----------------------------------------------home-section------------------------------------- */
+.main-section{
+  padding: 4rem 5%;
+  min-height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(247,247,247);
+}
+.main-section .left{
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 60%;
+  padding: 0 3%;
+  padding-top: -2rem;
+
+}
+.main-section .left h2{
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+.main-section .left p{
+  font-size: 1.5rem;
+  font-family: "phetsarath";
+}
+.main-section .right{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-section .right img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+footer{
+  min-height: 5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 5%;
+  color: white;
+}
+footer .footer-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 2px solid white;
+}
+footer .footer-top .left h2{
+  font-size: 2rem;
+}
+footer .footer-top .right{
+  display: flex ;
+  gap: 2rem;
+}
+footer .footer-top .right span{
+  font-size: 2rem;
+  cursor: pointer;
+}
+footer .footer-bottom{
+  padding: .75rem 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  header .header-nav{
+    display: none;
+  }
+  .main-section{
+    flex-direction: column;
+  }
+  .main-section .left , 
+  .main-section .right{
+    width: 100%;
+  }
+}
