@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "saysettha";
+  src: url("../fonts/saysettha_ot.ttf") format("truetype");
+  /* Add additional font formats if necessary */
+}
+
+@font-face {
+  font-family: "phetsarath";
+  src: url("../fonts/Phetsarath_OT.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "noto_sans_lao";
+  src: url("../fonts/noto_sans_lao.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "noto_sans_lao";
+}
+
+
+/* .loginPage{
+  background: url('Images/employeems.jpeg');
+  background: linear-gradient(rgba(11,11,11,0.5), rgba(10,10,10,0.5)),url('Images/employeems.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 120%;
+} */
+.loginForm{
+    background-color: rgba(1, 32, 93, 0.6);
+    color: white;
+}
+.employee_image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.emp_det_image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
