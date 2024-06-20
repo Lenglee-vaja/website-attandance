@@ -21,7 +21,9 @@
   font-family: "noto_sans_lao";
 }
 
-
+:root{
+  --main-color:rgb(1,96,210)
+}
 /* .loginPage{
   background: url('Images/employeems.jpeg');
   background: linear-gradient(rgba(11,11,11,0.5), rgba(10,10,10,0.5)),url('Images/employeems.jpeg');
@@ -49,7 +51,12 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 8%;
+  padding: 0 14%;
+}
+
+header .header-left span{
+  font-style: 2rem;
+  font-weight: 600;
 }
 header .header-nav{
   display: flex;
@@ -71,9 +78,11 @@ header .header-nav{
 }
 header .header-right{
   display: flex;
+  position: relative;
   align-items: center;
   gap: 1rem;
 }
+
 header .header-right .icon{
   cursor: pointer;
 }
@@ -81,8 +90,7 @@ header .header-right .icon{
 
 /* -----------------------------------------------home-section------------------------------------- */
 .main-section{
-  padding: 4rem 5%;
-  min-height: 80vh;
+  padding: 4rem 14%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -95,7 +103,7 @@ header .header-right .icon{
   gap: 3rem;
   width: 60%;
   padding: 0 3%;
-  padding-top: -2rem;
+  margin-top: -3rem;
 
 }
 .main-section .left h2{
@@ -115,13 +123,14 @@ header .header-right .icon{
 .main-section .right img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  display: block;
 }
 footer{
   min-height: 5rem;
   display: flex;
   flex-direction: column;
-  padding: 0 5%;
+  padding: 0 14%;
   color: white;
 }
 footer .footer-top{
@@ -148,6 +157,170 @@ footer .footer-bottom{
   width: 100%;
   justify-content: center;
 }
+/* ----------------------input section---------------- */
+
+.input-big-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.input-big-container label{
+  font-size: 15px ;
+  font-weight: 600;
+}
+.input-container {
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+.input-container .input-wrapper{
+   width: 100%;
+   gap: .5rem;
+   display: flex;
+   align-items: center;
+   padding: 2px;
+}
+.input-container .input-wrapper {
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: 2px solid #e9e9e9;;
+  transition: border-color 0.3s; /* Add a smooth transition effect */
+}
+.input-container .input-wrapper input{
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.input-container .input-wrapper:focus-within,
+.input-container .input-wrapper input:focus,
+.input-container .input-wrapper select:focus {
+  /* Add focus selector */
+  border-color: var(--main-color);
+  color: var(--main-color);
+}
+
+/* Increase specificity for the label */
+.input-container .input-wrapper .icon {
+  color: grey;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.input-container .input-wrapper input,
+.input-container .input-wrapper select {
+  font-size: 0.8rem;
+}
+.input-container .input-wrapper:hover .icon,
+.input-container .input-wrapper input:focus + .icon,
+.input-container .input-wrapper select:focus + .icon {
+  color: var(--primary-color);
+}
+/* registe page */
+.form-container{
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  position: fixed;
+  z-index: 300;
+  top:0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.form-container form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 520px;
+  MAX-height: 30rem;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.form-container form::-webkit-scrollbar{
+  width:3px;
+  background-color: transparent;
+  /* background-color: #ddbfbf; */
+}
+.form-container .btn{
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.scaleUp {
+  display: block;
+  animation-name: scaleUp;
+}
+
+.scaleDown {
+  animation-name: scaleDown;
+}
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+@keyframes scaleDown {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 768px) {
   header .header-nav{
@@ -158,6 +331,9 @@ footer .footer-bottom{
   }
   .main-section .left , 
   .main-section .right{
+    width: 100%;
+  }
+  .form-container form{
     width: 100%;
   }
 }
