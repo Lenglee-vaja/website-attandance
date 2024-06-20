@@ -2,6 +2,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import InputField from "./InputField";
+import { FaPhone } from "react-icons/fa6";
+import { CiLock } from "react-icons/ci";
+import { TbPhoneCall } from "react-icons/tb";
 
 
 const LoginForm = ({ onClose, animated, setOpenRegisterModal,setOpenLoginModal  }) => {
@@ -26,21 +29,21 @@ const LoginForm = ({ onClose, animated, setOpenRegisterModal,setOpenLoginModal  
     }
   };
   const handleRegister = () => {
-      setOpenLoginModal(false);
-      setOpenRegisterModal(true);
+    setOpenLoginModal(false);
+    setOpenRegisterModal(true);
   }
   return (
     <>
       <div className="form-container" onClick={handleCloseModal}>
         <Formik
           initialValues={{
-            email: "",
+            phoneNumber: "",
             password: "",
           }}
           validate={(values) => {
             const errors = {};
-            if(!values.email){
-               errors.email = "Required email or phone number";
+            if(!values.phoneNumber){
+               errors.phoneNumber = "Required phone number";
               }
             if (!values.password) {
               errors.password = "Required password";
@@ -72,21 +75,22 @@ const LoginForm = ({ onClose, animated, setOpenRegisterModal,setOpenLoginModal  
               </h3></div>
               <div style={{width:'100%'}}>
               <InputField
-                label={"Email"}
-                id="email"
-                name="email"
+                label={"phone Number"}
+                id="phoneNumber"
+                name="phoneNumber"
                 type="text"
-                placeholder="Email Address"
-                value={values.email}
-                errors={errors.email}
-                touched={touched.email}
+                placeholder="phone Number"
+                value={values.phoneNumber}
+                errors={errors.phoneNumber}
+                touched={touched.phoneNumber}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                icon={<TbPhoneCall size={20} />}
               />
               </div>
              <div style={{width:'100%'}}>
              <InputField
-                 label={"Password"}
+             label={"Password"}
                 id="password"
                 name="password"
                 type="password"
@@ -96,6 +100,7 @@ const LoginForm = ({ onClose, animated, setOpenRegisterModal,setOpenLoginModal  
                 touched={touched.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                icon={<CiLock size={20}/>}
               />
              </div>
               <button className="btn" type="submit">Login</button>

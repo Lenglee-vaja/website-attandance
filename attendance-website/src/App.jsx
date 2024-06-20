@@ -10,6 +10,7 @@ import Profile from "./Components/Profile";
 import AddCategory from "./Components/AddCategory";
 import AddEmployee from "./Components/AddEmployee";
 import EditEmployee from "./Components/EditEmployee";
+import Frame from "./Components/Frame";
 import Layout from "./Components/Layout";
 import Main from "./Components/Main";
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Layout><Main /></Layout>} />
         {/* <Route path="/register" element={<Layout><Register/></Layout>} /> */}
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/frame" element={<Frame />}></Route>
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="" element={<Home />}></Route>
           <Route path="/dashboard/employee" element={<Employee />}></Route>

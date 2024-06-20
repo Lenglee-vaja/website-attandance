@@ -96,6 +96,7 @@ header .header-right .icon{
   justify-content: center;
   align-items: center;
   background-color: rgb(247,247,247);
+  height: 100%;
 }
 .main-section .left{
   display: flex;
@@ -229,7 +230,7 @@ footer .footer-bottom{
   right: 0;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.form-container form{
+.form-container form, .form-container .login-form{
   display: flex;
   flex-direction: column;
   gap: 0.6rem;

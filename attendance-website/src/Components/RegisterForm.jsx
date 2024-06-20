@@ -5,31 +5,22 @@ import InputField from "./InputField";
 import RoleCheckBox from "./RoleCheckBox";
 
 
-const RegisterForm = ({ onClose, animated, setOpenRegisterModal,  setOpenLoginModal  }) => {
-
+const RegisterForm = ({ onClose, animated, setOpenRegisterModal,setOpenWebCamModal  }) => {
   const handleCloseModal = (e) => {
     if (e.target === e.currentTarget) {
      onClose();
     }
   };
-  const handleLogin  =() =>{
-   setOpenRegisterModal(false);
-   setOpenLoginModal(true);
-  }
+  // const handleLogin  =() =>{
+  //  setOpenRegisterModal(false);
+  //  setOpenLoginModal(true);
+  // }
   const handleRegister =(values) =>{
-   console.log("values::",values);
-   // try{ 
-    //     const response = fetch("http://localhost:3000/auth/register", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(values),
-    //     });
-    //     const data = response.json();
-    //     console.log(data);
-    // }
-    // catch(err){console.log(err)}
+    console.log('new data::',values)
+   if(values?.role === "student"){
+    setOpenRegisterModal(false);
+    setOpenWebCamModal(true)
+   }
   }
   return (
     <>
@@ -65,7 +56,8 @@ const RegisterForm = ({ onClose, animated, setOpenRegisterModal,  setOpenLoginMo
             return errors;
           }}
           onSubmit={(values) => {
-              handleRegister(values)
+            handleRegister(values)
+            // console.log(values);
           }}
         >
           {({
@@ -173,6 +165,7 @@ const RegisterForm = ({ onClose, animated, setOpenRegisterModal,  setOpenLoginMo
     </>
   );
 };
+
 
 export default RegisterForm
 

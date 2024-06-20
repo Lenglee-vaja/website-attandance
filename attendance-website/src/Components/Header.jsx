@@ -6,12 +6,16 @@ import { IoSchoolOutline } from "react-icons/io5";
 
 import LoginForm from "./LoginFrom";
 import RegisterForm from "./RegisterForm";
+import Frame from "./Frame";
+// import Frame from "./Frame";
 const Header = () => {
   // const navigate = useNavigate()
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
+  const [openWebCamModal, setOpenWebCamModal] = useState(false);
   const location = useLocation();
   const active = location.pathname;
+ console.log('openRegisterModal:',openRegisterModal)
 
   return (
     <header style={{ background: "var(--main-color)" }}>
@@ -46,14 +50,24 @@ const Header = () => {
           onClose={() => setOpenLoginModal(false)}
         />
       )}
-      {openRegisterModal && (
+      {openRegisterModal && !openLoginModal && (
         <RegisterForm
+          setOpenWebCamModal={setOpenWebCamModal}
           setOpenRegisterModal={setOpenRegisterModal}
           setOpenLoginModal={setOpenLoginModal}
           animated={[openRegisterModal]}
           onClose={() => setOpenRegisterModal(false)}
         />
       )}
+      {openWebCamModal && !openLoginModal && !openRegisterModal && (
+        <Frame
+          setOpenWebCamModal={setOpenWebCamModal}
+          setOpenRegisterModal={setOpenRegisterModal}
+          animated={[openRegisterModal]}
+          onClose={() => setOpenRegisterModal(false)}
+        />
+      )}
+  
     </header>
   );
 };
