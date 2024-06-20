@@ -10,10 +10,13 @@ import Profile from "./Components/Profile";
 import AddCategory from "./Components/AddCategory";
 import AddEmployee from "./Components/AddEmployee";
 import EditEmployee from "./Components/EditEmployee";
+import Layout from "./Components/Layout";
+import Main from "./Components/Main";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Layout><Main /></Layout>} />
         <Route path="/login" element={<Login />}></Route>
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="" element={<Home />}></Route>
@@ -24,6 +27,7 @@ function App() {
           <Route path="/dashboard/add_category" element={<AddCategory />}></Route>
           <Route path="/dashboard/profile" element={<Profile />}></Route>
         </Route>
+         
       </Routes>
     </BrowserRouter>
   );
