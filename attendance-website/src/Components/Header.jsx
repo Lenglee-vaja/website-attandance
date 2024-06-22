@@ -75,22 +75,22 @@ export default Header;
 const navData = [
   {
     id: 1,
-    name: "Home",
+    name: "ໜ້າຫຼັກ",
     link: "/",
   },
   {
     id: 2,
-    name: "detect",
+    name: "ກວດຈັບໃບໜ້າ",
     link: "/detect",
   },
   {
     id: 3,
-    name: "My logs",
-    link: "/mylogs",
+    name: "ເຄື່ອງມື",
+    link: "/tool",
   },
   {
     id: 3,
-    name: "Log in",
-    link: "/login",
+    name: "ກ່ຽວກັບພວກເຮົາ",
+    link: "/about",
   },
 ];

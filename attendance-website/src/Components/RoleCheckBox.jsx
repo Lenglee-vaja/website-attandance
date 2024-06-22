@@ -11,11 +11,11 @@ function RoleCheckBox({value,onChange,label,name,...props}) {
       <div style={{display:'flex',gap:'1rem',fontSize:'16px',marginTop:"-0.5rem"}}>
         <div style={{display:'flex',gap:'1rem',fontSize:'16px',alignItems:'center',marginLeft:'1rem'}}>
           <input id={studentId} type="radio" name={name} value="student" checked={value === "student"} onChange={(e) =>onChange(e)} disabled={disabled} className='cursor-pointer' />
-          <label htmlFor={studentId}>ນັກສືຫສາ</label>
+          <label htmlFor={studentId}>ນັກສືກສາ</label>
         </div>
         <div style={{display:'flex',gap:'1rem',fontSize:'16px',alignItems:'center'}}>
           <input id={teacherId} type="radio" name={name} value="teacher" checked={value === "teacher"} onChange={(e) => onChange(e)} disabled={disabled} className='cursor-pointer' />
-          <label htmlFor={teacherId}>ອາຈານ</label>
+          <label htmlFor={teacherId}>ອາຈານສອນ</label>
         </div>
       </div>
       <div>{errors ? <small style={{ color: "red", fontSize: "12px" }}>{errors}</small> : null}</div>

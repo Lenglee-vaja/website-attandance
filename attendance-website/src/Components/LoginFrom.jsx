@@ -43,10 +43,10 @@ const LoginForm = ({ onClose, animated, setOpenRegisterModal,setOpenLoginModal  
           validate={(values) => {
             const errors = {};
             if(!values.phoneNumber){
-               errors.phoneNumber = "Required phone number";
+               errors.phoneNumber = "ກະລຸນາປ້ອນເບີໂທລະສັບ";
               }
             if (!values.password) {
-              errors.password = "Required password";
+              errors.password = "ກະລຸນາປ້ອນລະຫັດຜ່ານ";
             }
             return errors;
           }}
@@ -71,15 +71,15 @@ const LoginForm = ({ onClose, animated, setOpenRegisterModal,setOpenLoginModal  
               }}
             >
              <div style={{width:'100%',display:'flex',justifyContent:'center', marginBottom:'1rem'}}> <h3>
-                Login Form
+                ຂໍ້ມູນເຂົ້າສູ່ລະບົບ
               </h3></div>
               <div style={{width:'100%'}}>
               <InputField
-                label={"phone Number"}
+                label={"ເບີໂທ"}
                 id="phoneNumber"
                 name="phoneNumber"
                 type="text"
-                placeholder="phone Number"
+                placeholder="ປ້ອນເບີໂທ"
                 value={values.phoneNumber}
                 errors={errors.phoneNumber}
                 touched={touched.phoneNumber}
@@ -90,11 +90,11 @@ const LoginForm = ({ onClose, animated, setOpenRegisterModal,setOpenLoginModal  
               </div>
              <div style={{width:'100%'}}>
              <InputField
-             label={"Password"}
+             label={"ລະຫັດຜ່ານ"}
                 id="password"
                 name="password"
                 type="password"
-                placeholder="Password"
+                placeholder="ປ້ອນລະຫັດຜ່ານ"
                 value={values.password}
                 errors={errors.password}
                 touched={touched.password}
@@ -103,9 +103,9 @@ const LoginForm = ({ onClose, animated, setOpenRegisterModal,setOpenLoginModal  
                 icon={<CiLock size={20}/>}
               />
              </div>
-              <button className="btn" type="submit">Login</button>
+              <button className="btn" type="submit">ເຂົ້າລະບົບ</button>
               <div style={{ display: "flex", justifyContent: "start" ,marginTop:'5px'}}>
-               <div> <p>No Account?</p></div><div style={{marginLeft:'10px'}}><Link to={"/"} onClick={handleRegister}>Register here</Link></div>
+               <div> <p>ຖ້າຍັງບໍ່ມີບັນຊີ ?</p></div><div style={{marginLeft:'10px'}}><Link to={"/"} onClick={handleRegister}>ລົງທະບຽນ</Link></div>
               </div>
             </form>
           )}

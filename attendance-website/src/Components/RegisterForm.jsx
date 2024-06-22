@@ -38,20 +38,20 @@ const RegisterForm = ({ onClose, animated, setOpenRegisterModal,setOpenWebCamMod
             const errors = {};
             if(`${values.role}` === "student"){
               if(!values.classRoom){
-                errors.classRoom = "Required classRoom"
+                errors.classRoom = "ກະລຸນາປ້ອນຫ້ອງ"
               }
               if(!values.studentId){
-                errors.studentId = "Required studentId"
+                errors.studentId = "ກະລຸນາປ້ອນລະຫັດນັກສືກສາ"
               }
             }
             if(!values.userName){
-              errors.userName = "Required Name"
+              errors.userName = "ກະລຸນາປ້ອນຊື່"
             }
             if(!values.phoneNumber){
-              errors.phoneNumber = "Required phone Number"
+              errors.phoneNumber = "ກະລຸນາປ້ອນເບີໂທ"
             }
             if (!values.password) {
-              errors.password = "Required password";
+              errors.password = "ກະລຸນາປ້ອນລະຫັດຜ່ານ";
             }
             return errors;
           }}
@@ -76,15 +76,15 @@ const RegisterForm = ({ onClose, animated, setOpenRegisterModal,setOpenWebCamMod
               }}
             >
              <div style={{width:'100%',display:'flex',justifyContent:'center', marginBottom:'1rem'}}> <h3>
-                Register Form
+                ຂໍ້ມູນລົງທະບຽນ
               </h3></div>
                <div>
-                  <RoleCheckBox value={values.role} onChange={handleChange} label="Role" name="role"/>
+                  <RoleCheckBox value={values.role} onChange={handleChange} label="ສິດນຳໃຊ້ລະບົບ" name="role"/>
                </div>
               <div style={{width:'100%'}}>
               {values.role === "student" && (
                  <InputField
-                 label={"Student Id"}
+                 label={"ລະຫັດນັກສືກສາ"}
                  id="studentId"
                  name="studentId"
                  type="text"
@@ -97,11 +97,11 @@ const RegisterForm = ({ onClose, animated, setOpenRegisterModal,setOpenWebCamMod
                />
               )}
               <InputField
-                label={"User Name"}
+                label={"ຊື່ ເເລະ ນາມສະກຸນ"}
                 id="userName"
                 name="userName"
                 type="text"
-                placeholder="Your Name"
+                placeholder="ປ້ອນຊື່"
                 value={values.userName}
                 errors={errors.userName}
                 touched={touched.userName}
@@ -111,11 +111,11 @@ const RegisterForm = ({ onClose, animated, setOpenRegisterModal,setOpenWebCamMod
               </div>
               <div style={{width:'100%'}}>
               <InputField
-                label={"Phone Number"}
+                label={"ເບີໂທ"}
                 id="phoneNumber"
                 name="phoneNumber"
                 type="text"
-                placeholder={"phoneNumber"}
+                placeholder={"ປ້ອນເບີໂທ"}
                 value={values.phoneNumber}
                 errors={errors.phoneNumber}
                 touched={touched.phoneNumber}
@@ -126,11 +126,11 @@ const RegisterForm = ({ onClose, animated, setOpenRegisterModal,setOpenWebCamMod
              {values.role === "student" && (
                 <div style={{width:'100%'}}>
                 <InputField
-                   label={"Class Room"}
+                   label={"ຫ້ອງຮຽນ"}
                   id="classRoom"
                   name="classRoom"
                   type="text"
-                  placeholder="Cs001"
+                  placeholder="1CS1"
                   value={values.classRoom}
                   errors={errors.classRoom}
                   touched={touched.classRoom}
@@ -141,11 +141,11 @@ const RegisterForm = ({ onClose, animated, setOpenRegisterModal,setOpenWebCamMod
              )}
              <div style={{width:'100%'}}>
              <InputField
-                 label={"Password"}
+                 label={"ລະຫັດຜ່ານ"}
                 id="password"
                 name="password"
                 type="password"
-                placeholder="Password"
+                placeholder="ປ້ອນລະຫັດຜ່ານ"
                 value={values.password}
                 errors={errors.password}
                 touched={touched.password}
@@ -153,7 +153,7 @@ const RegisterForm = ({ onClose, animated, setOpenRegisterModal,setOpenWebCamMod
                 onBlur={handleBlur}
               />
              </div>
-              <button className="btn">Register</button>
+              <button className="btn">ລົງທະບຽນ</button>
               {/* <div style={{ display: "flex", justifyContent: "start" ,marginTop:'5px'}}>
                <div> <p>Already have Account ?</p></div><div style={{marginLeft:'10px'}}><Link to={"/"} onClick={handleLogin}>login here</Link></div>
               </div> */}

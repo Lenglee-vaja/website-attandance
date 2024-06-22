@@ -1,4 +1,3 @@
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
@@ -13,11 +12,17 @@ import EditEmployee from "./Components/EditEmployee";
 import Frame from "./Components/Frame";
 import Layout from "./Components/Layout";
 import Main from "./Components/Main";
+import About from "./Components/About";
+import Tool from "./Components/Tool";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout><Main /></Layout>} />
+        <Route path="/about" element={<Layout><About /></Layout>} />
+        <Route path="/tool" element={<Layout><Tool /></Layout>} />
+
+
         {/* <Route path="/register" element={<Layout><Register/></Layout>} /> */}
         <Route path="/login" element={<Login />}></Route>
         <Route path="/frame" element={<Frame />}></Route>
