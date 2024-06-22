@@ -109,6 +109,50 @@ header .header-right .icon{
   margin-top: -3rem;
 
 }
+.main-section .left .search-section{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 90%;
+  background-color: white;
+  border-radius: 2rem;
+  padding: 0.75rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  gap: 1rem;
+  border: 1px solid black;
+  border-bottom: 4px solid black;
+  transition: all 0.3s ease-in-out;
+}
+.main-section .left .search-section .icon{
+  cursor: pointer;
+  color: #7CABE4;
+}
+.main-section .left .search-section:hover{
+  border: 1px solid var(--main-color);
+  border-bottom: 4px solid var(--main-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--main-color);
+}
+.main-section .left .search-section .icon-section{
+border-right: gray 1px solid;
+padding-right: 1rem;
+}
+.main-section .left .search-section:hover .icon{
+  color: var(--main-color);
+}
+
+.main-section .left .search-section input{
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+.main-section .left .search-section img{
+  width: 36px;
+  min-height: auto;
+  cursor: pointer;
+}
 .main-section .left h2{
   font-size: 3.5rem;
   font-weight: 200;
