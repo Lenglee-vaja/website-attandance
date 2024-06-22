@@ -17,6 +17,8 @@ const Header = () => {
   const active = location.pathname;
  console.log('openRegisterModal:',openRegisterModal)
 
+ 
+
   return (
     <header style={{ background: "var(--main-color)" }}>
       <div className="header-left">

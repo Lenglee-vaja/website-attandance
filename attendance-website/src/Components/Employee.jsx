@@ -52,7 +52,7 @@ const Employee = () => {
       <div className="d-flex justify-content-center">
         <h3>ລາຍການຜູ້ໃຊ້</h3>
       </div>
-      <Link to="/dashboard/add_employee" className="btn btn-success">
+      <Link to="/employee/add_employee" className="btn btn-success">
         ເພີ່ມຜູ້ໃຊ້
       </Link>
       <div className="mt-3">

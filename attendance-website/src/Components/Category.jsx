@@ -35,7 +35,7 @@ const Category = () => {
         <div className='d-flex justify-content-center'>
             <h3>ລາຍການຫ້ອງທີ່ຖືກສ້າງ</h3>
         </div>
-        <Link to="/dashboard/add_category" className='btn btn-success'>ສ້າງຫ້ອງ</Link>
+        <Link to="/category/add_category" className='btn btn-success'>ສ້າງຫ້ອງ</Link>
         <div className='mt-3'>
           <table className='table'>
             <thead>
