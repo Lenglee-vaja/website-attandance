@@ -123,6 +123,7 @@ header .header-right .icon{
   border: 1px solid black;
   border-bottom: 4px solid black;
   transition: all 0.3s ease-in-out;
+  margin-bottom: 2rem;
 }
 .main-section .left .search-section .icon{
   cursor: pointer;
