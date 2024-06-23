@@ -1,8 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SelectDropDown from "./SelectDropDown";
+import InputField from "./InputField";
 
 const AddCategory = () => {
+  const [subject, setSubject] = useState();
+  const [className, setClassName] = useState();
+
   //     const [category, setCategory] = useState()
   //     const navigate = useNavigate()
   //     const handleSubmit = (e) =>{
@@ -86,42 +91,30 @@ const AddCategory = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="d-flex justify-content-center align-items-center mt-3">
-      <div className="p-3 rounded w-50 border">
+    <div className="d-flex justify-content-center align-items-center" style={{height:"100vh"}}>
+      <div className="login-form"  style={{padding:"50px"}}>
         <h3 className="text-center">ສ້າງຫ້ອງຮຽນ</h3>
         <form className="row g-1 " onSubmit={handleSubmit}>
-          <div className="col-12">
-            <label htmlFor="category" className="form-label">
-              ຫ້ອງ
-            </label>
-            <select
-              name="category"
-              id="category"
-              className="form-select"
-              onChange={(e) =>
-                set_Class({ ..._class, category_id: e.target.value })
-              }
-            >
-              {category.map((c) => {
-                return <option value={c.id}>{c.name}</option>;
-              })}
-            </select>
+          <div className="col-12 mt-3">
+            <SelectDropDown 
+             label="ຫ້ອງຮຽນ"
+             options={["CPR", "CW", "CS"]}
+             onChange={(e) => setClassName(e.target.value)}
+             placeholder={"1CS1"}
+             />
           </div>
-          <div className="col-12">
-            <label htmlFor="inputName" className="form-label">
-              ວິຊາ
-            </label>
-            <input
+           <div className="col-12 mt-3">
+           <InputField 
+              label="ຊື່ຫ້ອງຮຽນ"
               type="text"
-              className="form-control rounded-0"
-              id="inputName"
-              placeholder="ປ້ອນວິຊາ"
-              onChange={(e) => set_Class({ ..._class, c: e.target.value })}
+              value={subject}
+              name="subject"
+              onChange={(e) => setSubject(e.target.value)}
             />
-          </div>
+           </div>
           <div className="col-12">
             <div className='font-family: "Phetsarath_OT"'>
-              <label htmlFor="classHour" className="form-label">
+              <label htmlFor="classHour" className="form-label" style={{fontWeight:"bold"}}>
                 ຊົ່ວໂມງຮຽນ
               </label>
               <div className="d-flex justify-content-between">
@@ -152,8 +145,8 @@ const AddCategory = () => {
             </div>
           </div>
 
-          <div className="col-12">
-            <button type="submit" className="btn btn-primary w-100">
+          <div className="col-12 mt-5">
+            <button type="submit" className="btn btn-primary w-100 p-2">
               ເພີ່ມ
             </button>
           </div>

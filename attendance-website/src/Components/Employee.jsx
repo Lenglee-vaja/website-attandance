@@ -2,8 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Style.css";
+import CustomTable from "./CustomTable";
+import InputField from './InputField'
+import { IoSearchOutline } from "react-icons/io5";
 
 const Employee = () => {
+  const [search, setSearch] = useState("")
   // const [employee, setEmployee] = useState([]);
   // const navigate = useNavigate();
   // useEffect(() => {
@@ -49,55 +53,45 @@ const Employee = () => {
   }
   return (
     <div className="px-5 mt-3">
-      <div className="d-flex justify-content-center">
-        <h3>ລາຍການຜູ້ໃຊ້</h3>
-      </div>
-      <Link to="/employee/add_employee" className="btn btn-success">
-        ເພີ່ມຜູ້ໃຊ້
-      </Link>
+        <div className='d-flex justify-content-between align-content-center'>
+       <div className='mt-10' style={{width:"20rem"}}>
+            <InputField
+               label={"ຄົ້ນຫາ"}
+                 id="name"
+                value={search}
+                type={"text"}
+                name={"name"}
+                placeholder={"ຄົ້ນຫາ ...."}
+                icon={<IoSearchOutline />}                
+                onChange={(e) => setSearch(e.target.value)}
+            />
+        </div>
+        <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <Link to={"/category/add_category"} className="btn btn-primary p-2" style={{width:"10rem"}}>ເພີ່ມຫ້ອງ</Link>
+        </div>
+       </div>
       <div className="mt-3">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>ຊື່</th>
-              <th>ຮູບ</th>
-              <th>ອີເມວ</th>
-              <th>ທີ່ຢູ່</th>
-              <th>ຫ້ອງ</th>
-              <th>ໃຊ້ງານ</th>
-            </tr>
-          </thead>
-          <tbody>
-            {employee.map((e)=>(
-              <tr>
-                <td>{e.name}</td>
-                <td>
-                  <img
-                  //  src="{`http://localhost:3000/Images/` + e.image}"
-                  src="http://localhost:5173/Images/employeems.jpeg"
-                   className="employee_image"
-                   />
-                </td>
-                <td>{e.email}</td>
-                <td>{e.address}</td>
-                <td>{e.salary}</td>
-                <td>
-                  <Link
-                  to={`/dashboard/edit_employee/` + e.id}
-                  className="btn btn-info btn-sm me-2">
-                    ເເກ້ໄຂ
-                  </Link>
-                  <button
-                  className="btn btn-warning btn-sm"
-                  onClick={() => handleDelete(e.id)}
-                  >
-                    ລືບ
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+           <CustomTable header={["ຊື່ຜູ້ໃຊ້", "ຮູບພາບ", "ອີເມວ", "ທີ່ຢູ່", "ລາຍລະອຽດ", "ລາຍການ"]}>
+               {employee.map((item, index) => (
+                   <tr key={index}>
+                       <td>
+                           {item.name}
+                       </td>
+                       <td>
+                           <img
+                               src={`https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745`}
+                               alt={item.name}
+                               width={30}
+                               height={30}  
+                           />
+                       </td>  
+                       <td>{item.email}</td>
+                       <td>{item.address}</td>
+                       <td>{item.salary}</td>
+                       <td>{item.category_id}</td>
+                   </tr>
+               ))}
+           </CustomTable>
       </div>
     </div>
   );
