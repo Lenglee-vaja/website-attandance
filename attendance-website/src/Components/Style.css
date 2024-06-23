@@ -463,7 +463,7 @@ footer .footer-bottom{
   gap: 2rem;
   justify-content: center;
   align-items: center;
-  border: 4px dashed var(--main-color);
+  border: 3px dashed var(--main-color);
   border-radius: 1rem;
   padding: 5rem 4rem;
 }
@@ -481,8 +481,9 @@ footer .footer-bottom{
 }
 .detect-container .detect-left .title{
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 300;
   color: #000000;
+  font-family: 'phetsarath';
 }
 .detect-container .detect-left .button-container{
   display: flex;
@@ -494,8 +495,9 @@ footer .footer-bottom{
   border: none;
   background-color: var(--main-color);
   color: white;
-  font-weight: 600;
+  font-weight: 300;
   cursor: pointer;
+  font-family: 'phetsarath';
 }
 .detect-container .detect-right{
   max-width: 100%;
@@ -505,9 +507,10 @@ footer .footer-bottom{
 }
 .detect-container .detect-right h3{
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 400;
   color: #000000;
   margin-bottom: 1rem;
+  font-family: 'phetsarath';
 }
 
 .detect-container .detect-right .detect-content{
