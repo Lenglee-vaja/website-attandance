@@ -24,7 +24,6 @@ function App() {
         <Route path="/about" element={<Layout><About /></Layout>} />
         <Route path="/tool" element={<Layout><Tool /></Layout>} />
 
-
         {/* <Route path="/register" element={<Layout><Register/></Layout>} /> */}
         <Route path="/login" element={<Login />}></Route>
         <Route path="/frame" element={<Frame />}></Route>
