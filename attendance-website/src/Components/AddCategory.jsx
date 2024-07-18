@@ -1,156 +1,323 @@
+// import axios from "axios";
+// import React, { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import SelectDropDown from "./SelectDropDown";
+// import InputField from "./InputField";
+// import { SiGoogleclassroom } from "react-icons/si";
+// import { HiOutlineAcademicCap } from "react-icons/hi";
+// import { API } from "../constants/api";
+// import ModalComponent from "./AddClassModal";
+
+// const AddCategory = () => {
+//   const [subject, setSubject] = useState("");
+//   const [className, setClassName] = useState("");
+//   const [classHour, setClassHour] = useState("");
+//   const [location, setLocation] = useState({ latitude: null, longitude: null });
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [modalData, setModalData] = useState({});
+//   const classHours = [
+//     {
+//       id: 1,
+//       name: "ຊົ່ວໂມງ 1",
+//     },
+//     {
+//       id: 2,
+//       name: "ຊົ່ວໂມງ 2",
+//     },
+//     {
+//       id: 3,
+//       name: "ຊົ່ວໂມງ 3",
+//     },
+//     {
+//       id: 4,
+//       name: "ຊົ່ວໂມງ 4",
+//     },
+//   ];
+//   const getLocation = () => {
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//         (position) => {
+//           setLocation({
+//             latitude: position.coords.latitude,
+//             longitude: position.coords.longitude
+//           });
+//         },
+//         (error) => {
+//           console.error(error);
+//         }
+//       );
+//     } else {
+//       console.error("Geolocation is not supported by this browser.");
+//     }
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const data = {
+//       class_name: className,
+//       subject: subject,
+//       class_hour: classHour,
+//     };
+
+//     const token = localStorage.getItem("token");
+//     console.log("data=====>", data);
+//     await axios
+//       .post(`${API}/add_class`, data, {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//       })
+//       .then((result) => {
+//         if (result.status === 200) {
+//           setModalData(result.data.data); // Save response data for modal
+//           setIsOpen(true); // Open modal on success
+
+//           // navigate("/category");
+//         } else {
+//           alert(result.data.Error);
+//         }
+//       })
+//       .catch((err) => console.log(err));
+//   };
+
+//   return (
+//     <div
+//       className="d-flex justify-content-center align-items-start p-5"
+//       style={{ height: "100vh" }}
+//     >
+//       <div className="login-form" style={{ padding: "50px" }}>
+//         <form className="row g-1 " onSubmit={handleSubmit}>
+//           <div className="col-12 mt-3">
+//             <SelectDropDown
+//               label="ຫ້ອງຮຽນ"
+//               options={["1CS1", "2CS1", "3CS1", "4CS1"]}
+//               onChange={(e) => setClassName(e.target.value)}
+//               placeholder={"1CS1"}
+//               icon={<SiGoogleclassroom size={20} />}
+//             />
+//           </div>
+//           <div className="col-12 mt-3">
+//             <InputField
+//               label="ຊື່ວິຊາ"
+//               type="text"
+//               value={subject}
+//               name="subject"
+//               placeholder={"ປ້ອນຊື່ວິຊາ"}
+//               onChange={(e) => setSubject(e.target.value)}
+//               icon={<HiOutlineAcademicCap size={20} />}
+//             />
+//           </div>
+//           <div className="col-12">
+//             <label htmlFor="classHour" className="form-label">
+//               ຊົ່ວໂມງຮຽນ
+//             </label>
+//             <div className="grid-container">
+//               {classHours.map((c) => (
+//                 <div key={c.id} className="grid-item">
+//                   <input
+//                     className="form-check-input"
+//                     type="radio"
+//                     name="classHour"
+//                     id={`classHour_${c.id}`}
+//                     value={c.id}
+//                     onChange={(e) => setClassHour(e.target.value)}
+//                   />
+//                   <label
+//                     className="form-check-label"
+//                     htmlFor={`classHour_${c.id}`}
+//                   >
+//                     {c.name}
+//                   </label>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+
+//           <div className="col-12 mt-3">
+//             <button type="submit" className="btn btn-primary w-100 p-2">
+//               ສ້າງຫ້ອງ
+//             </button>
+//           </div>
+//         </form>
+//         <ModalComponent
+//         isOpen={isOpen}
+//         closeModal={() => setIsOpen(false)}
+//         data={modalData}
+//       />
+//       </div>
+//       {/* Modal Popup */}
+      
+//     </div>
+//   );
+// };
+
+// export default AddCategory;
+
+
+
+
+
+
+
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SelectDropDown from "./SelectDropDown";
 import InputField from "./InputField";
+import { SiGoogleclassroom } from "react-icons/si";
+import { CiLocationOff } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
+import { HiOutlineAcademicCap } from "react-icons/hi";
+import { API } from "../constants/api";
+import ModalComponent from "./AddClassModal";
 
 const AddCategory = () => {
-  const [subject, setSubject] = useState();
-  const [className, setClassName] = useState();
-
-  //     const [category, setCategory] = useState()
-  //     const navigate = useNavigate()
-  //     const handleSubmit = (e) =>{
-  //         e.preventDefault()
-  //         axios.post("http://localhost:3000/category", {category})
-  //         .then(result=>{
-  //             if(result.data.status){
-  //                 navigate('/dashboard/category')
-  //             }else{
-  //                 alert(result.data.Error)
-  //             }
-  //         })
-  //         .catch(err=>console.log(err))
-  //     }
-  //   return (
-  //     <div className='d-flex justify-content-center align-items-center h-75'>
-  //         <div className='p-3 rounded-3 w-25 border'>
-  //             <h2>Add Category</h2>
-  //             <form onSubmit={handleSubmit}>
-  //                 <div className='mb-3'>
-  //                     <label htmlFor="category"><strong>Category:</strong></label>
-  //                     <input type="text" name="category" placeholder ="Enter Category"
-  //                     onChange={(e) => setCategory(e.target.value)} className='form-control rounded-0'/>
-  //                 </div>
-  //                 <button className='btn btn-success w-100 rounded-0 mb-2'>Add Category</button>
-  //             </form>
-  //         </div>
-  //     </div>
-  //   )
-  const [_class, set_Class] = useState({
-    classCode: "",
-    subject: "",
-    classHour: "",
-    category_id: "",
-  });
-  const [category, setCategory] = useState([]);
+  const [subject, setSubject] = useState("");
+  const [className, setClassName] = useState("");
+  const [classHour, setClassHour] = useState("");
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalData, setModalData] = useState({});
   const classHours = [
     {
+      id: 1,
       name: "ຊົ່ວໂມງ 1",
     },
     {
+      id: 2,
       name: "ຊົ່ວໂມງ 2",
     },
     {
+      id: 3,
       name: "ຊົ່ວໂມງ 3",
     },
     {
+      id: 4,
       name: "ຊົ່ວໂມງ 4",
     },
   ];
-  const navigate = useNavigate();
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/category")
-      .then((result) => {
-        if (result.data.status) {
-          setCategory(result.data.result);
-        } else {
-          alert(result.data.Error);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("classCode", _class.classCode);
-    formData.append("subject", _class.subject);
-    formData.append("classHour", _class.classHour);
-    formData.append("category_id", _class.category_id);
 
-    axios
-      .post("http://localhost:3000/auth/add_employee", formData)
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            latitude: position.coords.latitude.toString(),
+            longitude: position.coords.longitude.toString(),
+          });
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+  console.log("location", location);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      class_name: className,
+      subject: subject,
+      class_hour: classHour,
+      teacher_lat: location.latitude,
+      teacher_long: location.longitude,
+    };
+
+    const token = localStorage.getItem("token");
+    console.log("data=====>", data);
+    await axios
+      .post(`${API}/add_class`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((result) => {
-        if (result.data.Status) {
-          navigate("/dashboard/employee");
+        if (result.status === 200) {
+          setModalData(result.data.data); // Save response data for modal
+          setIsOpen(true); // Open modal on success
+
+          // navigate("/category");
         } else {
           alert(result.data.Error);
         }
       })
       .catch((err) => console.log(err));
   };
+
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{height:"100vh"}}>
-      <div className="login-form"  style={{padding:"50px"}}>
-        <h3 className="text-center">ສ້າງຫ້ອງຮຽນ</h3>
+    <div
+      className="d-flex justify-content-center align-items-start p-5"
+      style={{ height: "100vh" }}
+    >
+      <div className="login-form" style={{ padding: "45px" }}>
+        { location.latitude === null ? <div style={{color: "red"}}><span style={{marginRight: "8px"}}><CiLocationOff size={24}/></span> <span>ກຳລັງຄົ້ນຫາຕຳເເໜ່ງປັດຈຸບັນ...</span></div> : <div style={{color: "green"}}><span style={{marginRight: "8px"}}><CiLocationOn size={24}/></span> <span>ບັນທືກຕຳເເໜ່ງທີ່ທ່ານຈະສ້າງຫ້ອງສຳເລັດ</span></div> }
         <form className="row g-1 " onSubmit={handleSubmit}>
           <div className="col-12 mt-3">
-            <SelectDropDown 
-             label="ຫ້ອງຮຽນ"
-             options={["CPR", "CW", "CS"]}
-             onChange={(e) => setClassName(e.target.value)}
-             placeholder={"1CS1"}
-             />
+            <SelectDropDown
+              label="ຫ້ອງຮຽນ"
+              options={["1CS1", "2CS1", "3CS1", "4CS1"]}
+              onChange={(e) => setClassName(e.target.value)}
+              placeholder={"1CS1"}
+              icon={<SiGoogleclassroom size={20} />}
+            />
           </div>
-           <div className="col-12 mt-3">
-           <InputField 
-              label="ຊື່ຫ້ອງຮຽນ"
+          <div className="col-12 mt-3">
+            <InputField
+              label="ຊື່ວິຊາ"
               type="text"
               value={subject}
               name="subject"
+              placeholder={"ປ້ອນຊື່ວິຊາ"}
               onChange={(e) => setSubject(e.target.value)}
+              icon={<HiOutlineAcademicCap size={20} />}
             />
-           </div>
+          </div>
           <div className="col-12">
-            <div className='font-family: "Phetsarath_OT"'>
-              <label htmlFor="classHour" className="form-label" style={{fontWeight:"bold"}}>
-                ຊົ່ວໂມງຮຽນ
-              </label>
-              <div className="d-flex justify-content-between">
-                {classHours.map((c) => {
-                  console.log("c======>", c);
-                  return (
-                    <div key={c.id} className="form-check form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="classHour"
-                        id={`classHour_${c.id}`}
-                        value={c.id}
-                        onChange={(e) =>
-                          set_Class({ ..._class, category_id: e.target.value })
-                        }
-                      />
-                      <label
-                        className="form-check-label "
-                        htmlFor={`classHour_${c.id}`}
-                      >
-                        {c.name}
-                      </label>
-                    </div>
-                  );
-                })}
-              </div>
+            <label htmlFor="classHour" className="form-label">
+              ຊົ່ວໂມງຮຽນ
+            </label>
+            <div className="grid-container">
+              {classHours.map((c) => (
+                <div key={c.id} className="grid-item">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="classHour"
+                    id={`classHour_${c.id}`}
+                    value={c.id}
+                    onChange={(e) => setClassHour(e.target.value)}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor={`classHour_${c.id}`}
+                  >
+                    {c.name}
+                  </label>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="col-12 mt-5">
+          <div className="col-12 mt-3">
             <button type="submit" className="btn btn-primary w-100 p-2">
-              ເພີ່ມ
+              ສ້າງຫ້ອງ
             </button>
           </div>
         </form>
+        <ModalComponent
+          isOpen={isOpen}
+          closeModal={() => setIsOpen(false)}
+          data={modalData}
+        />
       </div>
     </div>
   );

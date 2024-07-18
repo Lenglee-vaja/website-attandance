@@ -15,7 +15,7 @@ const SelectDropDown = ({ onBlur, onChange, errors, touched, options, ...props }
 {label ? ( <label htmlFor={id}>  {label}  </label> ) : null}
 <div className="select-container input-container">
       <div className="input-wrapper w-full flex gap-x-2 items-center p-2" style={{borderColor:errors && touched ? "red" : ""}}>
-      {icon ? <label htmlFor={id} className="icon">{icon}</label> : null}
+      {icon ? <label htmlFor={id} className="icon" style={{margin:"0 10px"}}>{icon}</label> : null}
       <select
         className="outline-none w-full border-none"
         id={id}

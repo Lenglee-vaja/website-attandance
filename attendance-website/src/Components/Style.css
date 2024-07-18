@@ -92,6 +92,12 @@ header .header-right .icon{
   cursor: pointer;
 }
 
+header .header-right .username{
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  color: white;
+}
 
 /* -----------------------------------------------home-section------------------------------------- */
 .main-section{
@@ -106,7 +112,7 @@ header .header-right .icon{
 .main-section .left{
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
   width: 60%;
   padding: 0 3%;
   margin-top: -3rem;
@@ -128,7 +134,7 @@ header .header-right .icon{
   transition: all 0.3s ease-in-out;
 }
 .main-section .left .search-section .icon{
-  cursor: pointer;
+  /* cursor: pointer; */
   color: #7CABE4;
 }
 .main-section .left .search-section:hover{
@@ -150,6 +156,7 @@ padding-right: 1rem;
   border: none;
   outline: none;
   font-size: 1rem;
+  font-family: "phetsarath";
 }
 .main-section .left .search-section img{
   width: 36px;
@@ -537,9 +544,11 @@ footer .footer-bottom{
   display: flex;
   gap: 1rem;
   align-items: center;
-
+  font-family: 'phetsarath';
 
 }
+
+
 /* admin section  */
 .sidebar-container{
   padding: 2rem 0;
@@ -697,4 +706,208 @@ tbody td {
   .detect-container{
     grid-template-columns: 1fr;
   }
+}
+
+/* ==========================add class================================== */
+
+.form-label{
+  font-size: 15px ;
+  font-weight: 600;
+}
+
+.form-check-label{
+  font-size: 14px ;
+  font-weight: 600;
+  font-weight: 400;
+  color: grey;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 20px; /* Space between items */
+  padding: 10px; /* Padding around the grid container */
+}
+
+.grid-item {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa; /* Light background color for better visibility */
+  padding: 10px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.grid-item input {
+  margin-right: 10px; /* Space between radio button and label */
+}
+
+.grid-item label {
+  font-family: "phetsarath";
+  margin: 0; /* Remove default margin */
+}
+
+
+
+/* =================================success modal=============================== */
+
+.success-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+}
+
+.success-modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkmark {
+  color: green;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+/* =================================add class modal=============================== */
+
+.Modal {
+  font-family: "phetsarath";
+  background-color: #fff;
+  width: 600px;
+  height: 500px;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 42%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.Modal h2 {
+  margin-top: 0;
+  padding-bottom: 10px;
+  font-size: 25px;
+  color: #333;
+  text-align: center;
+  position: relative; /* Required for positioning the pseudo-element */
+}
+
+.Modal h2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  position: absolute;
+  bottom: -5px; /* Adjust this value to control the distance of the underline from the text */
+  left: 0;
+}
+
+
+.Modal p {
+  font-family: "phetsarath";
+  font-size: 16px;
+  color: #666;
+  margin: 20px 0;
+}
+
+.Overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Modal button {
+  display: inline-block;
+  width: 50%;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Modal button:hover {
+  background-color: #0056b3;
+}
+
+.Modal button:not(:last-child) {
+  margin-right: 10px;
+}
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Adjust height as needed */
+}
+
+p {
+  display: flex;
+  /* align-items: center; */
+  gap: 8px; /* Adjust the gap value as needed */
+}
+
+.class_code strong {
+  margin-left: 10px; /* Adjust the margin value as needed */
+}
+
+/* =================================manual section=============================== */
+
+
+.manual-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center vertically */
+  height: 70vh; /* Adjust the height as needed */
+  padding: 70px; /* Optional: Add padding for spacing */
+}
+
+.manual-image {
+  max-width: 100%; /* Set maximum width to maintain responsiveness */
+  max-height: 100%; /* Set maximum height to maintain aspect ratio */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for a nice effect */
+  transition: transform 0.3s ease; /* Optional: Add smooth transform animation */
+  border-radius: 10px; /* Optional: Add border radius for rounded corners */
+}
+
+.manual-image:hover {
+  transform: scale(1.05); /* Optional: Scale up image on hover */
 }

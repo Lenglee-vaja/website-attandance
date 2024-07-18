@@ -2,12 +2,13 @@ import React, { useRef, useEffect, useState } from "react";
 import { Howl } from "howler";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-const Frame = () => {
+import { API } from "../constants/api";
+import { useNavigate } from "react-router-dom";
+const Frame = ({userInfo, setOpenWebCamModal}) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [capturedImages, setCapturedImages] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const startVideo = async () => {
       try {
@@ -104,7 +105,7 @@ const Frame = () => {
         formData.append("files", image);
       });
       const response = await axios.post(
-        "http://127.0.0.1:8000/student/upload_frames",
+        `${API}/upload_frames`,
         formData,
         {
           headers: {
@@ -112,7 +113,22 @@ const Frame = () => {
           },
         }
       );
-      console.log(response.data);
+      if (response.status === 200){
+        const session_Id = response.data.data
+        const data = {
+          session_id: session_Id,
+          ...userInfo
+        }
+        const responseRegister = await axios.post(`${API}/student/register`, data)
+        console.log("responseRegister", responseRegister)
+        if (responseRegister.status === 200) {
+          localStorage.setItem("token", responseRegister.data.token);
+          localStorage.setItem("userData", JSON.stringify(responseRegister.data.data));
+          setOpenWebCamModal(false)
+          window.location.reload()
+        }
+
+      }
     } catch (error) {
       console.error("Error sending images to API:", error);
     }

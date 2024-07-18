@@ -15,27 +15,53 @@ import Main from "./Components/Main";
 import About from "./Components/About";
 import Tool from "./Components/Tool";
 import Detect from "./Components/Detect";
+import PrivateRoute from "./Components/PrivateRoute";
+import Manual from "./Components/Manual";
+import UserProfile from "./Components/UserProfile";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout><Main /></Layout>} />
-        <Route path="/detect" element={<Layout><Detect /></Layout>} />
+        <Route path="/detect/:id" element={<Layout><Detect /></Layout>} />
+        {/* <Route path="/detect/:classCode" element={
+          <PrivateRoute allowedRoles={["student"]} component={() => <Layout><Detect /></Layout>} />
+        } /> */}
+        <Route path="/manual" element={<Layout><Manual /></Layout>} />
         <Route path="/about" element={<Layout><About /></Layout>} />
         <Route path="/tool" element={<Layout><Tool /></Layout>} />
-
-        {/* <Route path="/register" element={<Layout><Register/></Layout>} /> */}
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/frame" element={<Frame />}></Route>
-         <Route path="/dashboard" element={<Dashboard><Home /></Dashboard>} />
-         <Route path="/employee" element={<Dashboard><Employee /></Dashboard>} />
-         <Route path="/employee/add_employee" element={<Dashboard><AddEmployee/></Dashboard>} />
-         <Route path="/employee/edit_employee/:id" element={<Dashboard><EditEmployee/></Dashboard>} />
-         <Route path="/category" element={<Dashboard><Category /></Dashboard>} />
-         <Route path="/category/add_category" element={<Dashboard><AddCategory/></Dashboard>} />
-         <Route path="/profile" element={<Dashboard><Profile/></Dashboard>} />
+        <Route path="/userprofile" element={<Layout><UserProfile/></Layout>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/frame" element={<Frame />} />
         
-         
+        <Route path="/dashboard" element={
+          <PrivateRoute allowedRoles={["teacher"]} component={() => <Dashboard><Home /></Dashboard>} />
+        } />
+
+        <Route path="/employee" element={
+          <PrivateRoute allowedRoles={["teacher"]} component={() => <Dashboard><Employee /></Dashboard>} />
+        } />
+        
+        <Route path="/employee/add_employee" element={
+          <PrivateRoute allowedRoles={["teacher"]} component={() => <Dashboard><AddEmployee/></Dashboard>} />
+        } />
+        
+        <Route path="/employee/edit_employee/:id" element={
+          <PrivateRoute allowedRoles={["teacher"]} component={() => <Dashboard><EditEmployee/></Dashboard>} />
+        } />
+        
+        <Route path="/category" element={
+          <PrivateRoute allowedRoles={["teacher"]} component={() => <Dashboard><Category /></Dashboard>} />
+        } />
+        
+        <Route path="/category/add_category" element={
+          <PrivateRoute allowedRoles={["teacher"]} component={() => <Dashboard><AddCategory/></Dashboard>} />
+        } />
+        
+        <Route path="/profile" element={
+          <PrivateRoute allowedRoles={["teacher"]} component={() => <Dashboard><Profile/></Dashboard>} />
+        } />
       </Routes>
     </BrowserRouter>
   );

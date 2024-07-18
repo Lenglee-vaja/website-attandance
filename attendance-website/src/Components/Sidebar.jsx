@@ -3,14 +3,18 @@ import { useLocation } from "react-router-dom";
 import { IoSchoolOutline } from "react-icons/io5";
 const Sidebar = () => {
   const { pathname } = useLocation();
-
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    window.location.reload();
+  };
   const isActive = (path) => pathname === path || pathname.startsWith(path);
 
   return (
     <aside className="sidebar-container">
       <div>
         <div className="logo">
-       <h3>  <IoSchoolOutline size={30}  color="white" /></h3> <h3>ລະບົບບັນທືກລາຍຊື່</h3>
+       <h3>  <IoSchoolOutline size={40}  color="white" /></h3> <h3>ລະບົບບັນທືກລາຍຊື່</h3>
         </div>
         <nav className="nav-sidebar">
           {navDatas.map((data) => (
@@ -26,8 +30,8 @@ const Sidebar = () => {
         </nav>
       </div>
       <div className="logout-container">
-        <div className="logout">
-          <i className="fs-4 bi-power ms-2"></i> <span>logout</span>
+        <div className="logout" onClick={handleLogout}>
+          <i className="fs-4 bi-power ms-2"></i> <span>ອອກຈາກລະບົບ</span>
         </div>
       </div>
     </aside>
