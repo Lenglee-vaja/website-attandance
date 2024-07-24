@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { IoSearchOutline } from "react-icons/io5";
 import CustomTable from "./CustomTable";
@@ -8,6 +8,7 @@ import { API } from "../constants/api";
 import formatDateTime from "./FormatTime";
 
 const Category = () => {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState([]);
   console.log("category=====>", category);
@@ -38,6 +39,10 @@ const Category = () => {
     fetchClasses();
   }, [search]); // Fetch classes when search changes
 
+
+  const handleNavigate = (item) =>{
+    navigate("/category/add_category",{state:{category:item}});
+  }
   return (
     <div className="px-5 mt-3">
       <div className="d-flex justify-content-between align-content-center">
@@ -71,7 +76,7 @@ const Category = () => {
       </div>
       <div className="mt-1">
         <CustomTable
-          header={["ລະຫັດຫ້ອງ", "ຊື່ວິຊາ", "ຫ້ອງ", "ຊົ່ວໂມງ", "ວັນທີ"]}
+          header={["ລະຫັດຫ້ອງ", "ຊື່ວິຊາ", "ຫ້ອງ", "ຊົ່ວໂມງ", "ວັນທີ","ຈັດການ"]}
           style={{ tableLayout: "fixed", width: "100%" }} // Set table layout and width
         >
           {category?.map((item) => {
@@ -83,6 +88,7 @@ const Category = () => {
                 <td style={{ width: "15%" }}>{item.class_name}</td>
                 <td style={{ width: "15%" }}>{item.class_hour}</td>
                 <td style={{ width: "30%" }}>{dateTime}</td>{" "}
+                <td ><button className="btn  p-1" style={{ width: "5rem",background:"#88D66C",color:"white" }} onClick={() => handleNavigate(item)}>ເປີດຄືນ</button></td>
                 {/* Use dateTime here */}
               </tr>
             );

@@ -162,8 +162,8 @@
 
 
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import  { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import SelectDropDown from "./SelectDropDown";
 import InputField from "./InputField";
 import { SiGoogleclassroom } from "react-icons/si";
@@ -174,12 +174,18 @@ import { API } from "../constants/api";
 import ModalComponent from "./AddClassModal";
 
 const AddCategory = () => {
+  const locationNav = useLocation();
+  const category = locationNav.state?.category;
   const [subject, setSubject] = useState("");
   const [className, setClassName] = useState("");
   const [classHour, setClassHour] = useState("");
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [isOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState({});
+
+  console.log("category:::::::::::", category);
+  console.log("classHour:::::::::::", classHour);
+  
   const classHours = [
     {
       id: 1,
@@ -202,6 +208,14 @@ const AddCategory = () => {
   useEffect(() => {
     getLocation();
   }, []);
+
+  useEffect(() => {
+    if (category) {
+      setClassName(category.class_name);
+      setSubject(category.subject);
+      setClassHour(category.class_hour);
+    }
+  }, [category]);
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -264,9 +278,10 @@ const AddCategory = () => {
           <div className="col-12 mt-3">
             <SelectDropDown
               label="ຫ້ອງຮຽນ"
+              value={className}
               options={["1CS1", "2CS1", "3CS1", "4CS1"]}
               onChange={(e) => setClassName(e.target.value)}
-              placeholder={"1CS1"}
+              placeholder={"ເລືອກຫ້ອງຮຽນ"}
               icon={<SiGoogleclassroom size={20} />}
             />
           </div>
@@ -292,8 +307,9 @@ const AddCategory = () => {
                     className="form-check-input"
                     type="radio"
                     name="classHour"
-                    id={`classHour_${c.id}`}
+                    id={`classHour_${c?.id}`}
                     value={c.id}
+                    checked={classHour === c.id.toString()}
                     onChange={(e) => setClassHour(e.target.value)}
                   />
                   <label

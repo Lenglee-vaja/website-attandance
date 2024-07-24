@@ -9,10 +9,22 @@ const Dashboard = ({children}) => {
   const location = useLocation();
   const [pageName, setPageName] = useState(null);
 
+
+  useEffect(() => {
+    
+  },[])
   useEffect(() => {
    getTitleFromLocation();
   }, [location.pathname]);
 
+
+const getAllClasses = async () => {
+   try{
+    const response = await axios.get(`${process.env.REACT_APP_API}/classes`);
+   }catch(error){
+    console.log(error);
+   }
+}
   const getTitleFromLocation = async () => {
     try {
       const pageName = await getPageName(location.pathname);
