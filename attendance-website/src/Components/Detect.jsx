@@ -406,6 +406,9 @@ const Detect = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        params: {
+          class_code: classData.class_code
+        }
       });
 
       if (response.data.data === "Known") {

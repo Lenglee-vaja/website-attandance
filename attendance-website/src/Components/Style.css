@@ -911,3 +911,9 @@ p {
 .manual-image:hover {
   transform: scale(1.05); /* Optional: Scale up image on hover */
 }
+
+/* =================================search home=============================== */
+
+.search-box{
+  margin: 20px 0 0 60px;
+}
