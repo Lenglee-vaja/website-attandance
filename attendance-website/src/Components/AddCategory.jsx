@@ -147,22 +147,15 @@
 //       />
 //       </div>
 //       {/* Modal Popup */}
-      
+
 //     </div>
 //   );
 // };
 
 // export default AddCategory;
 
-
-
-
-
-
-
-
 import axios from "axios";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SelectDropDown from "./SelectDropDown";
 import InputField from "./InputField";
@@ -185,7 +178,7 @@ const AddCategory = () => {
 
   console.log("category:::::::::::", category);
   console.log("classHour:::::::::::", classHour);
-  
+
   const classHours = [
     {
       id: 1,
@@ -273,13 +266,36 @@ const AddCategory = () => {
       style={{ height: "100vh" }}
     >
       <div className="login-form" style={{ padding: "45px" }}>
-        { location.latitude === null ? <div style={{color: "red"}}><span style={{marginRight: "8px"}}><CiLocationOff size={24}/></span> <span>ກຳລັງຄົ້ນຫາຕຳເເໜ່ງປັດຈຸບັນ...</span></div> : <div style={{color: "green"}}><span style={{marginRight: "8px"}}><CiLocationOn size={24}/></span> <span>ບັນທືກຕຳເເໜ່ງທີ່ທ່ານຈະສ້າງຫ້ອງສຳເລັດ</span></div> }
+        {location.latitude === null ? (
+          <div style={{ color: "red" }}>
+            <span style={{ marginRight: "8px" }}>
+              <CiLocationOff size={24} />
+            </span>{" "}
+            <span>ກຳລັງຄົ້ນຫາຕຳເເໜ່ງປັດຈຸບັນ...</span>
+          </div>
+        ) : (
+          <div style={{ color: "green" }}>
+            <span style={{ marginRight: "8px" }}>
+              <CiLocationOn size={24} />
+            </span>{" "}
+            <span>ບັນທືກຕຳເເໜ່ງທີ່ທ່ານຈະສ້າງຫ້ອງສຳເລັດ</span>
+          </div>
+        )}
         <form className="row g-1 " onSubmit={handleSubmit}>
           <div className="col-12 mt-3">
             <SelectDropDown
               label="ຫ້ອງຮຽນ"
               value={className}
-              options={["1CS1", "2CS1", "3CS1", "4CS1"]}
+              options={[
+                "1CS1",
+                "1CS2",
+                "2CS1",
+                "2CS2",
+                "3CS1",
+                "3CS2",
+                "4CS1",
+                "4CS2",
+              ]}
               onChange={(e) => setClassName(e.target.value)}
               placeholder={"ເລືອກຫ້ອງຮຽນ"}
               icon={<SiGoogleclassroom size={20} />}

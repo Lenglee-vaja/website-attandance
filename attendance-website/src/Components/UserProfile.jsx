@@ -11,15 +11,27 @@ import { API } from "../constants/api";
 
 const UserProfile = () => {
     const [isError, setIsError] = useState(null);
+    const userData = localStorage.getItem("userData");
+    const user = JSON.parse(userData);
+    const handleUpdate = async (values) => {
+      try {
+        
+      } catch (error) {
+        
+      }
+    }
   return (
-    <div style={{display:'grid', placeItems:'center', height: "100vh" ,width:'100%',background:'transparent'}}>
-        <div style={{ background: "white", padding: "2rem"}}>
+    <div style={{display:'grid', placeItems:'center', height: "90vh" ,width:'100%',background:'transparent'}}>
+      <div>
+        <h3>ຂໍ້ມູນນັກສຶກສາ</h3>
+      </div>
+        <div style={{ background: "white", padding: "1rem"}}>
         <Formik
           initialValues={{
-            student_code: "",
-            class_name: "",
-            fullname: "",
-            phone: "",
+            student_code: user.student_code || "",
+            class_name: user.class_name || "",
+            fullname: user.fullname || "",
+            phone: user.phone || "",
           }}
           validate={(values) => {
             const errors = {};
@@ -30,7 +42,7 @@ const UserProfile = () => {
             return errors;
           }}
           onSubmit={(values) => {
-            handleLogin(values);
+            handleUpdate(values);
           }}
         >
           {({
@@ -76,7 +88,7 @@ const UserProfile = () => {
 
               <div style={{ width: "100%" }}>
                 <InputField
-                  label={"student code"}
+                  label={"ລະຫັດນັກສຶກສາ"}
                   id="student_code"
                   name="student_code"
                   type="text"
@@ -91,7 +103,7 @@ const UserProfile = () => {
               </div>
               <div style={{ width: "100%" }}>
                 <InputField
-                  label={"fullname"}
+                  label={"ຊື່ ເເລະ ນາມສະກຸນ"}
                   id="fullname"
                   name="fullname"
                   type="text"
@@ -106,7 +118,7 @@ const UserProfile = () => {
               </div>
               <div style={{ width: "100%" }}>
                 <InputField
-                  label={"class name"}
+                  label={"ຫ້ອງຮຽນ"}
                   id="class_name"
                   name="class_name"
                   type="text"
@@ -135,7 +147,7 @@ const UserProfile = () => {
                 />
               </div>
               <button className="btn" type="submit" style={{ width: "100%" ,padding:"12px 0",borderRadius:'6px',border:"none",background:"var(--main-color)",color:"white",fontWeight:'600',cursor:"pointer"}}>
-                update
+                ເເກ້ໄຂຂໍ້ມູນ
               </button>
             </form>
           )}

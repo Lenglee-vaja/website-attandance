@@ -4,11 +4,13 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { API } from "../constants/api";
 import { useNavigate } from "react-router-dom";
-const Frame = ({userInfo, setOpenWebCamModal}) => {
+import LoadingPopUp from "./Loading";
+const Frame = ({ userInfo, setOpenWebCamModal }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [capturedImages, setCapturedImages] = useState([]);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const startVideo = async () => {
       try {
@@ -99,38 +101,42 @@ const Frame = ({userInfo, setOpenWebCamModal}) => {
   };
 
   const sendImagesToAPI = async () => {
+    setIsLoading(true);
     try {
       const formData = new FormData();
       capturedImages.forEach((image) => {
         formData.append("files", image);
       });
-      const response = await axios.post(
-        `${API}/upload_frames`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      if (response.status === 200){
-        const session_Id = response.data.data
+      const response = await axios.post(`${API}/upload_frames`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response.status === 200) {
+        const session_Id = response.data.data;
         const data = {
           session_id: session_Id,
-          ...userInfo
-        }
-        const responseRegister = await axios.post(`${API}/student/register`, data)
-        console.log("responseRegister", responseRegister)
+          ...userInfo,
+        };
+        const responseRegister = await axios.post(
+          `${API}/student/register`,
+          data
+        );
+        console.log("responseRegister", responseRegister);
         if (responseRegister.status === 200) {
           localStorage.setItem("token", responseRegister.data.token);
-          localStorage.setItem("userData", JSON.stringify(responseRegister.data.data));
-          setOpenWebCamModal(false)
-          window.location.reload()
+          localStorage.setItem(
+            "userData",
+            JSON.stringify(responseRegister.data.data)
+          );
+          setOpenWebCamModal(false);
+          window.location.reload();
         }
-
       }
     } catch (error) {
       console.error("Error sending images to API:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -154,6 +160,7 @@ const Frame = ({userInfo, setOpenWebCamModal}) => {
           <canvas ref={canvasRef} style={{ display: "none" }} />
         </div>
       </div>
+      {isLoading && <LoadingPopUp />}
     </div>
   );
 };

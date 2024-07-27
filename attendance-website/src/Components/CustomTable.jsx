@@ -1,4 +1,3 @@
-
 import PropTypes from "prop-types";
 // Import your custom CSS file for styling
 

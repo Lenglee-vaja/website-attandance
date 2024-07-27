@@ -923,3 +923,89 @@ p {
 .search-box{
   margin: 20px 0 0 60px;
 }
+
+/* =================================loading page=============================== */
+
+.loading-container {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: #ffffff;
+  /* Changed to hex value for consistency */
+}
+
+.loading-card {
+  width: 220px;
+  height: 220px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Added shadow for a subtle lift effect */
+  background-color: #ffffff;
+  /* Ensure background color consistency */
+}
+
+.loading-navbar {
+  /* background: #247dc9; */
+  height: 8px;
+  width: 100%;
+}
+
+.loading-body {
+  height: 190px;
+  background-color: #ffffff;
+  /* Ensure background color consistency */
+  display: grid;
+  place-items: center;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #247dc9;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.success-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Changed to center items vertically */
+  align-items: center;
+  background-color: #ffffff;
+  /* Ensure background color consistency */
+  height: 100%;
+}
+
+.success-body img {
+  width: 100px;
+  height: 100px;
+}
+
+.success-body .Text {
+  font-size: 20px;
+  color: #034060;
+  font-weight: 700;
+  text-align: center;
+  /* Ensure text alignment */
+}

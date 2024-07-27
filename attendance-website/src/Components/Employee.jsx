@@ -6,12 +6,18 @@ import CustomTable from "./CustomTable";
 import InputField from "./InputField";
 import { IoSearchOutline } from "react-icons/io5";
 import { API } from "../constants/api";
+import LoadingPopUp from "./Loading"; // Make sure you have a LoadingPopUp component
 
 const Employee = () => {
   const [search, setSearch] = useState("");
   const [employee, setEmployee] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const token = localStorage.getItem("token");
-  const fetchClasses = async () => {
+
+  const fetchEmployees = async () => {
+    setIsLoading(true); // Set loading state to true before starting the fetch
+    setError(null); // Reset error state
     try {
       const response = await axios.get(`${API}/students`, {
         headers: {
@@ -22,21 +28,25 @@ const Employee = () => {
       });
 
       if (response.status === 200) {
-        console.log("data=====>", response.data.data);
         setEmployee(response.data.data);
       } else {
-        alert(response.data.Error);
+        setError(response.data.Error || "An error occurred"); // Set error message
       }
     } catch (error) {
-      console.error(error);
+      setError("Failed to fetch employees"); // Handle fetch error
+    } finally {
+      setIsLoading(false); // Set loading state to false after fetch is complete
     }
   };
 
   useEffect(() => {
-    fetchClasses();
+    fetchEmployees();
   }, [search]);
+
   return (
     <div className="px-5 mt-3">
+      {isLoading && <LoadingPopUp />} {/* Show loading indicator when loading */}
+      {error && <div className="alert alert-danger">{error}</div>} {/* Show error message if any */}
       <div className="d-flex justify-content-between align-content-center">
         <div className="mt-10" style={{ width: "20rem" }}>
           <InputField
@@ -56,8 +66,8 @@ const Employee = () => {
           header={["ລະຫັດນັກສືກສາ", "ຊື່ ເເລະ ນາມສະກຸນ", "ເບີໂທ", "ຫ້ອງ"]}
           style={{ tableLayout: "fixed", width: "100%" }}
         >
-          {employee.map((item, index) => (
-            <tr key={index}>
+          {employee.map((item) => (
+            <tr key={item._id}> {/* Use item._id as key for better uniqueness */}
               <td style={{ width: "20%" }}>{item.student_code}</td>
               <td style={{ width: "20%" }}>{item.fullname}</td>
               <td style={{ width: "20%" }}>{item.phone}</td>

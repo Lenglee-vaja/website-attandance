@@ -6,7 +6,7 @@ import { HiOutlineAcademicCap } from "react-icons/hi";
 import { GiSandsOfTime } from "react-icons/gi";
 import { CiTimer } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import formatDateTime from "./FormatTime";
+import {formatDateTime} from "./FormatTime";
 
 // import "./Style.css";
 

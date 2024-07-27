@@ -7,6 +7,7 @@ import { TbPhoneCall } from "react-icons/tb";
 import axios from "axios";
 import { API } from "../constants/api";
 import { useState } from "react";
+import LoadingPopUp from "./Loading";
 
 const LoginForm = ({
   onClose,
@@ -16,9 +17,10 @@ const LoginForm = ({
 }) => {
   const navigate = useNavigate();
   const [isError, setIsError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const handleLogin = async (values) => {
     try {
-      console.log("values =====>", values);
+      setIsLoading(true);
       const response = await axios.post(`${API}/login`, values);
       console.log("response", response);
       if (response.status === 200) {
@@ -40,6 +42,8 @@ const LoginForm = ({
     } catch (error) {
       console.log("error", error);
       setIsError("ເບີໂທ ເເລະ ລະຫັດຜ່ານຂອງທ່ານບໍ່ຖຶກຕ້ອງ");
+    } finally {
+      setIsLoading(false);
     }
   };
   const handleCloseModal = (e) => {
@@ -172,6 +176,7 @@ const LoginForm = ({
           )}
         </Formik>
       </div>
+      {isLoading && <LoadingPopUp />}
       {/* <SuccessPopUp  /> */}
     </>
   );

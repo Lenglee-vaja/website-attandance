@@ -10,8 +10,9 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { CiLock } from "react-icons/ci";
 import { API } from "../constants/api";
 import { useNavigate } from "react-router-dom";
-
-
+import SelectDropDown from "./SelectDropDown";
+import LoadingPopUp from "./Loading";
+import { useState } from "react";
 
 const RegisterForm = ({
   onClose,
@@ -21,19 +22,20 @@ const RegisterForm = ({
   setUserInfo,
 }) => {
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCloseModal = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
-  const handleRegister = async(values) => {
+  const handleRegister = async (values) => {
     setUserInfo(values);
     if (values?.role === "student") {
       setOpenRegisterModal(false);
       setOpenWebCamModal(true);
     } else {
+      setIsLoading(true);
       try {
         const response = await axios.post(`${API}/teacher/register`, values);
         console.log("response", response);
@@ -41,10 +43,12 @@ const RegisterForm = ({
           setOpenRegisterModal(false);
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("userData", JSON.stringify(response.data.data));
-          navigate("/dashboard");
+          navigate("/category");
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -169,17 +173,23 @@ const RegisterForm = ({
               </div>
               {values.role === "student" && (
                 <div style={{ width: "100%" }}>
-                  <InputField
-                    label={"ຫ້ອງຮຽນ"}
-                    id="class_name"
+                  <SelectDropDown
                     name="class_name"
-                    type="text"
-                    placeholder="1CS1"
+                    id="class_name"
+                    label="ຫ້ອງຮຽນ"
                     value={values.class_name}
-                    errors={errors.class_name}
-                    touched={touched.class_name}
+                    options={[
+                      "1CS1",
+                      "1CS2",
+                      "2CS1",
+                      "2CS2",
+                      "3CS1",
+                      "3CS2",
+                      "4CS1",
+                      "4CS2",
+                    ]}
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    placeholder={"ເລືອກຫ້ອງຮຽນ"}
                     icon={<SiGoogleclassroom size={20} />}
                   />
                 </div>
@@ -205,6 +215,7 @@ const RegisterForm = ({
         </Formik>
       </div>
       {/* <SuccessPopUp  /> */}
+      {isLoading && <LoadingPopUp />}
     </>
   );
 };
